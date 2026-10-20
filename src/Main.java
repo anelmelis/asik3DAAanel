@@ -1,4 +1,5 @@
 import graph.Graph;
+import dsu.DisSetUnion;
 public class Main {
 
     public static void main(String[] args) {
@@ -15,6 +16,33 @@ public class Main {
         System.out.println(
                 "Total roads: " + city.getEdges().size()
         );
+
+
+        System.out.println("\nDSU Test:");
+
+        DisSetUnion dsu = new DisSetUnion(4);
+
+        dsu.union(0, 1);
+        dsu.union(2, 3);
+
+        System.out.println(
+                "0 and 1 connected: " + dsu.connected(0, 1)
+        );
+
+        System.out.println(
+                "0 and 2 connected: " + dsu.connected(0, 2)
+        );
+
+        dsu.union(1, 2);
+
+        System.out.println(
+                "After union: " + dsu.connected(0, 3)
+        );
+
+        System.out.println(
+                "Components: " + dsu.getComponents()
+        );
+
     }
 }
 
