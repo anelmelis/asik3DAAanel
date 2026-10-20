@@ -1,5 +1,6 @@
 import graph.Graph;
 import dsu.DisSetUnion;
+import mst.Kruskal;
 public class Main {
 
     public static void main(String[] args) {
@@ -42,6 +43,26 @@ public class Main {
         System.out.println(
                 "Components: " + dsu.getComponents()
         );
+
+
+        System.out.println("\nKruskal MST Test:");
+        Kruskal.Result result = Kruskal.findMST(city);
+        System.out.println("Selected roads:");
+
+        for (var edge : result.edges()) {
+            System.out.println(edge);
+        }
+
+        System.out.println(
+                "Total MST weight: " + result.totalWeight()
+        );
+        System.out.println(
+                "Connected: " + result.connected()
+        );
+        System.out.println(
+                "Edges examined: " + result.edgesExamined()
+        );
+
 
     }
 }
