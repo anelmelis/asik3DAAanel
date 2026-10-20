@@ -1,6 +1,7 @@
 import graph.Graph;
 import dsu.DisSetUnion;
 import mst.Kruskal;
+import mst.Prim;
 public class Main {
 
     public static void main(String[] args) {
@@ -62,6 +63,45 @@ public class Main {
         System.out.println(
                 "Edges examined: " + result.edgesExamined()
         );
+
+
+
+        System.out.println("\nPrim MST Test:");
+        Prim.Result primResult = Prim.findMST(city);
+
+        System.out.println("Selected roads:");
+
+        for (var edge : primResult.edges()) {
+            System.out.println(edge);
+        }
+
+        System.out.println(
+                "Total MST weight: " + primResult.totalWeight()
+        );
+
+        System.out.println(
+                "Connected: " + primResult.connected()
+        );
+
+        System.out.println(
+                "Edges examined: " + primResult.edgesExamined()
+        );
+
+        System.out.println("\nMST Comparison:");
+
+        System.out.println(
+                "Kruskal weight: " + result.totalWeight()
+        );
+
+        System.out.println(
+                "Prim weight: " + primResult.totalWeight()
+        );
+
+        System.out.println(
+                "Same MST weight: " +
+                        (result.totalWeight() == primResult.totalWeight())
+        );
+
 
 
     }
