@@ -4,8 +4,9 @@ import mst.Kruskal;
 import mst.Prim;
 import connectivity.TopologicalSort;
 import connectivity.Kosaraju;
-public class Main {
+import shortestpath.Dijkstra;
 
+public class Main {
     public static void main(String[] args) {
 
         Graph city = new Graph(4, false);
@@ -205,6 +206,52 @@ public class Main {
         System.out.println(
                 "Edges examined: " + sccResult.edgesExamined()
         );
+
+
+
+
+
+
+
+
+
+
+
+
+
+        System.out.println("\nDijkstra Shortest Paths Test:");
+        Graph routeGraph = new Graph(6, true);
+
+        routeGraph.addEdge(0, 1, 4);
+        routeGraph.addEdge(0, 2, 1);
+        routeGraph.addEdge(2, 1, 2);
+        routeGraph.addEdge(1, 3, 1);
+        routeGraph.addEdge(2, 3, 5);
+        routeGraph.addEdge(3, 4, 3);
+        routeGraph.addEdge(2, 4, 12);
+
+        Dijkstra.Result shortestResult =
+                Dijkstra.shortestPaths(routeGraph, 0);
+
+        for (int i = 0; i < routeGraph.getVertices(); i++) {
+
+            if (shortestResult.distanceTo(i) == Long.MAX_VALUE) {
+                System.out.println(
+                        "District " + i + ": unreachable"
+                );
+            } else {
+                System.out.println(
+                        "District " + i +
+                                ": distance = " + shortestResult.distanceTo(i) +
+                                ", path = " + shortestResult.pathTo(i)
+                );
+            }
+        }
+
+        System.out.println(
+                "Edges examined: " + shortestResult.edgesExamined()
+        );
+
 
 
 
