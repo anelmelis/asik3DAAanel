@@ -3,6 +3,7 @@ import dsu.DisSetUnion;
 import mst.Kruskal;
 import mst.Prim;
 import connectivity.TopologicalSort;
+import connectivity.Kosaraju;
 public class Main {
 
     public static void main(String[] args) {
@@ -172,6 +173,39 @@ public class Main {
 
         System.out.println("Edges examined: "
                 + cycleResult.edgesExamined());
+
+
+
+
+
+
+
+
+
+
+
+        System.out.println("\nKosaraju SCC Test:");
+        Graph sccGraph = new Graph(6, true);
+
+        sccGraph.addEdge(0, 1, 1);
+        sccGraph.addEdge(1, 2, 1);
+        sccGraph.addEdge(2, 0, 1);
+
+        sccGraph.addEdge(1, 3, 1);
+        sccGraph.addEdge(3, 4, 1);
+        sccGraph.addEdge(4, 3, 1);
+
+        Kosaraju.Result sccResult = Kosaraju.findSCC(sccGraph);
+        System.out.println(
+                "SCC components: " + sccResult.components()
+        );
+        System.out.println(
+                "Number of SCCs: " + sccResult.components().size()
+        );
+        System.out.println(
+                "Edges examined: " + sccResult.edgesExamined()
+        );
+
 
 
 
