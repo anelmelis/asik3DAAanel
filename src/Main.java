@@ -5,6 +5,7 @@ import mst.Prim;
 import connectivity.TopologicalSort;
 import connectivity.Kosaraju;
 import shortestpath.Dijkstra;
+import graph.GraphGenerator;
 
 public class Main {
     public static void main(String[] args) {
@@ -251,6 +252,63 @@ public class Main {
         System.out.println(
                 "Edges examined: " + shortestResult.edgesExamined()
         );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        System.out.println("\nGraph Generator Test:");
+
+
+        Graph smallGraph =
+                GraphGenerator.connectedUndirected(10, 30, 42);
+
+        System.out.println(
+                "Small Undirected Graph: V=" +
+                        smallGraph.getVertices() +
+                        ", E=" + smallGraph.getEdges().size()
+        );
+
+        System.out.println(
+                "Connected: " + Kruskal.findMST(smallGraph).connected()
+        );
+
+
+        Graph randomDAG = GraphGenerator.dag(10, 30, 42);
+
+        System.out.println(
+                "Small DAG: V=" +
+                        randomDAG.getVertices() +
+                        ", E=" + randomDAG.getEdges().size()
+        );
+
+        System.out.println(
+                "Has cycle: " + TopologicalSort.sort(randomDAG).hasCycle()
+        );
+
+
+        Graph randomCyclic =
+                GraphGenerator.directedWithCycle(10, 30, 42);
+
+        System.out.println(
+                "Small Directed Graph: V=" +
+                        randomCyclic.getVertices() +
+                        ", E=" + randomCyclic.getEdges().size()
+        );
+
+        System.out.println(
+                "Has cycle: " + TopologicalSort.sort(randomCyclic).hasCycle()
+        );
+
 
 
 
