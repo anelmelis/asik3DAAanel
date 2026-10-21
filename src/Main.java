@@ -2,6 +2,7 @@ import graph.Graph;
 import dsu.DisSetUnion;
 import mst.Kruskal;
 import mst.Prim;
+import connectivity.TopologicalSort;
 public class Main {
 
     public static void main(String[] args) {
@@ -46,6 +47,14 @@ public class Main {
         );
 
 
+
+
+
+
+
+
+
+
         System.out.println("\nKruskal MST Test:");
         Kruskal.Result result = Kruskal.findMST(city);
         System.out.println("Selected roads:");
@@ -63,6 +72,13 @@ public class Main {
         System.out.println(
                 "Edges examined: " + result.edgesExamined()
         );
+
+
+
+
+
+
+
 
 
 
@@ -101,6 +117,63 @@ public class Main {
                 "Same MST weight: " +
                         (result.totalWeight() == primResult.totalWeight())
         );
+
+
+
+
+
+
+
+
+
+
+
+
+
+        System.out.println("\nTopological Sort Test:");
+        Graph dag = new Graph(6, true);
+
+        dag.addEdge(5, 2, 1);
+        dag.addEdge(5, 0, 1);
+        dag.addEdge(4, 0, 1);
+        dag.addEdge(4, 1, 1);
+        dag.addEdge(2, 3, 1);
+        dag.addEdge(3, 1, 1);
+
+        TopologicalSort.Result topoResult =
+                TopologicalSort.sort(dag);
+
+        System.out.println("Topological order: "
+                + topoResult.order());
+
+        System.out.println("Has cycle: "
+                + topoResult.hasCycle());
+
+        System.out.println("Edges examined: "
+                + topoResult.edgesExamined());
+
+
+
+        System.out.println("\nTopological Sort Cycle Test:");
+        Graph cyclicGraph = new Graph(3, true);
+
+        cyclicGraph.addEdge(0, 1, 1);
+        cyclicGraph.addEdge(1, 2, 1);
+        cyclicGraph.addEdge(2, 0, 1);
+
+        TopologicalSort.Result cycleResult =
+                TopologicalSort.sort(cyclicGraph);
+
+        System.out.println("Topological order: "
+                + cycleResult.order());
+
+        System.out.println("Has cycle: "
+                + cycleResult.hasCycle());
+
+        System.out.println("Edges examined: "
+                + cycleResult.edgesExamined());
+
+
 
 
 
